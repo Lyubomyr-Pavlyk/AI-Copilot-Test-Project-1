@@ -45,8 +45,9 @@ def list_files():
     """List Python files in the project."""
     files = []
 
-    for path in PROJECT_DIR.glob("*.py"):
-        files.append(path.name)
+    for pattern in ("*.py", "*.md"):
+        for path in PROJECT_DIR.glob(pattern):
+            files.append(path.name)
 
     return files
 
@@ -65,20 +66,19 @@ def read_file(filename):
 
 
 def write_file(filename, content):
-    """Write a Python file in the project."""
+    """Write a Python or .md file in the project."""
     path = PROJECT_DIR / filename
-
-    if path.suffix != ".py":
-        return "ERROR: I can only write .py files."
+    
+    allowed_extensions = {".py", ".md"}
+    
+    if path.suffix.lower() not in allowed_extensions:
+        return "ERROR: I can only write .py or .md files."
 
     # Safety: don't allow the agent to write outside the project folder.
-    path.resolve().relative_to(PROJECT_DIR.resolve())
-
-    # Make a backup before changing an existing file.
-    if path.exists():
-        backup = path.with_suffix(".py.bak")
-        backup.write_text(path.read_text(encoding="utf-8"),
-                          encoding="utf-8")
+    try:
+        path.resolve().relative_to(PROJECT_DIR.resolve())
+    except ValueError:
+        return "ERROR: File must be inside the project folder."
 
     path.write_text(content, encoding="utf-8")
 
