@@ -1,0 +1,19 @@
+from agent import *
+import utils
+
+# Placeholder for Read_Data_FIle
+def Read_Data_FIle(file_name):
+    # This is where you would read numbers from a file and return them as a list.
+    pass
+
+# Main function to test the median calculation
+def main():
+    file_name = 'somefile.txt'
+    Numbers = Read_Data_FIle(file_name)
+    if Numbers:
+        print(f"The Median is: {utils.calculate_median(Numbers)}")
+    else:
+        print("No numbers found in the file.")
+
+if __name__ == '__main__':
+    main()
