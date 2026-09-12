@@ -29,7 +29,7 @@ import json
 # 1. Project and LM Studio settings
 # ---------------------------------------------------------
 
-PROJECT_DIR = Path(r"d:\Projects\AI Copilot Test Projects")
+PROJECT_DIR = Path(r"d:\Projects\AI Copilot Test Projects\AI Copilot Test Project 1")
 
 client = OpenAI(
     base_url="http://localhost:1234/v1",

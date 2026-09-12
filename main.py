@@ -1,4 +1,5 @@
 from agent import *
+
 import utils
 
 # Placeholder for Read_Data_FIle
@@ -22,7 +23,11 @@ def main():
     file_name = 'somefile.txt'
     Numbers = Read_Data_FIle(file_name)
     if Numbers:
-        print(f"The Median is: {utils.calculate_median(Numbers)}")
+        Median = utils.calculate_median(Numbers)
+        print(f"The Median is: {Median}")
+
+        Average = utils.calculate_average(Numbers)
+        print(f"The Average is: {Average}")
     else:
         print("No numbers found in the file.")
 
